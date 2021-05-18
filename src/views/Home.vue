@@ -33,6 +33,9 @@
               >
             </v-card-actions>
           </v-card>
+          <div v-if="submitted" class="submitted">
+            <p>Image submitted. Check console if there is an error.</p>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -46,8 +49,9 @@ export default {
   data() {
     return {
       name: "",
-      img: "",
+      img: null,
       imgURL: "",
+      submitted: false,
     };
   },
   methods: {
@@ -57,6 +61,8 @@ export default {
         img: this.imgURL,
         likes: 0,
       });
+      this.$refs.form.reset();
+      this.submitted = true;
     },
     async uploadImage() {
       const uploadTask = storage.ref().child(this.img.name).put(this.img);
