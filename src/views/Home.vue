@@ -24,6 +24,13 @@
                   v-model="img"
                   @change="uploadImage"
                 ></v-file-input>
+                <v-progress-linear
+                  :active="loading"
+                  :indeterminate="loading"
+                  absolute
+                  bottom
+                  color="green"
+                ></v-progress-linear>
               </v-form>
               <v-divider></v-divider>
             </v-card-text>
@@ -39,7 +46,9 @@
             </v-card-actions>
           </v-card>
           <div v-if="submitted" class="submitted">
-            <p>Image submitted. Check console if there is an error.</p>
+            <p class="text-center">
+              Image submitted. Check console if there is an error.
+            </p>
           </div>
         </v-col>
       </v-row>
@@ -58,6 +67,7 @@ export default {
       imgURL: "",
       submitted: false,
       uploaded: true,
+      loading: false,
     };
   },
   methods: {
@@ -84,6 +94,7 @@ export default {
           var progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
+          this.loading = true;
         },
         (error) => {
           // Handle unsuccessful uploads
@@ -95,6 +106,7 @@ export default {
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
             this.imgURL = downloadURL;
             this.uploaded = false;
+            this.loading = false;
           });
         }
       );
