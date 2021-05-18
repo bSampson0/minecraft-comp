@@ -1,12 +1,13 @@
 <template>
   <div id="home" class="mt-12">
+    <h1 class="text-center">Windmill Competition</h1>
     <v-container class="fill-height">
       <v-row align="center" justify="center">
         <v-col cols="12" sm="6">
           <v-card>
             <v-card-title> Submission Form </v-card-title>
             <v-card-subtitle>
-              Use the form to upload your Windmill
+              Use the form to upload your image.
             </v-card-subtitle>
             <v-divider class="ml-4 mr-4"></v-divider>
             <v-card-text>
@@ -28,7 +29,11 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="primary" class="ma-2" @click="submit()"
+              <v-btn
+                color="primary"
+                class="ma-2"
+                @click="submit()"
+                :disabled="uploaded"
                 >Submit</v-btn
               >
             </v-card-actions>
@@ -52,6 +57,7 @@ export default {
       img: null,
       imgURL: "",
       submitted: false,
+      uploaded: true,
     };
   },
   methods: {
@@ -64,7 +70,7 @@ export default {
       this.$refs.form.reset();
       this.submitted = true;
     },
-    async uploadImage() {
+    uploadImage() {
       const uploadTask = storage.ref().child(this.img.name).put(this.img);
       // Register three observers:
       // 1. 'state_changed' observer, called any time the state changes
@@ -88,6 +94,7 @@ export default {
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
             this.imgURL = downloadURL;
+            this.uploaded = false;
           });
         }
       );

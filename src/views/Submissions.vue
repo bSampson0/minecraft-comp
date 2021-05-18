@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <h1>Submitted Entries</h1>
+          <h1 class="text-center">Windmill Competition Entries</h1>
         </v-col>
       </v-row>
       <v-row>
