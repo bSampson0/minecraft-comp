@@ -11,15 +11,11 @@
           <v-card max-height="500px">
             <v-card-title> {{ entry.name }} </v-card-title>
             <v-card-text>
-              <v-img height="200px" :src="entry.img" contain></v-img>
+              <a :href="entry.img" target="_blank">
+                <v-img height="200px" :src="entry.img" contain></v-img>
+              </a>
             </v-card-text>
-            <v-card-actions>
-              <span class="ml-3 mb-2">Number of Likes: {{ entry.likes }}</span>
-              <v-spacer></v-spacer>
-              <v-icon @click="like(i)" class="my-icon mr-4 mb-2"
-                >mdi-thumb-up</v-icon
-              >
-            </v-card-actions>
+            <v-card-text> Upload Date: {{ entry.uploadDate }} </v-card-text>
           </v-card>
         </v-col>
       </v-row>
