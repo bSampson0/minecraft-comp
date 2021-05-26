@@ -1,7 +1,13 @@
 <template>
-  <div id="home" class="mt-12">
-    <h1 class="text-center">Windmill Competition</h1>
-    <v-container class="fill-height">
+  <div id="home">
+    <div class="top-section text-center justify-center py-6">
+      <h1>JOIN COMPETITION</h1>
+      <span
+        >Enter a competition by selecting the one you want to join, then
+        uploading your image.</span
+      >
+    </div>
+    <v-container class="fill-height pt-12">
       <v-row align="center" justify="center">
         <v-col cols="12" sm="6">
           <v-card>
@@ -27,7 +33,7 @@
                 <v-file-input
                   outlined
                   accept="image/*"
-                  label="Upload Windmill"
+                  label="Upload Image"
                   v-model="img"
                   @change="uploadImage"
                 ></v-file-input>
@@ -141,4 +147,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.top-section {
+  background: #195f1f;
+}
+</style>

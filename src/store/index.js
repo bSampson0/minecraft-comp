@@ -22,7 +22,7 @@ export default new Vuex.Store({
         form.pw
       );
       commit("setUser", user);
-      router.push("/createComp");
+      router.push("/admin");
     },
     async logout({ commit }) {
       await auth.signOut();

@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <h1 class="pt-12 text-center">Admin</h1>
-    <v-container class="fill-heigh">
+  <div id="login">
+    <div class="top-section text-center justify-center py-6">
+      <h1>ADMIN LOGIN</h1>
+      <span>Admins ONLY!</span>
+    </div>
+    <v-container class="fill-height pt-12">
       <v-row align="center" justify="center">
         <v-col cols="12" sm="6">
           <v-form ref="login">
@@ -58,4 +61,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.top-section {
+  background: #195f1f;
+}
+</style>
