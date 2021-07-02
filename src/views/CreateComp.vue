@@ -8,22 +8,22 @@
             <v-form ref="comp">
               <v-card-text>
                 <v-text-field
-                  v-model="competition.compName"
+                  v-model="compName"
                   label="Competition Name"
                   outlined
                 ></v-text-field>
                 <v-text-field
-                  v-model="competition.compStart"
+                  v-model="compStart"
                   label="Competition Start Date"
                   outlined
                 ></v-text-field>
                 <v-text-field
-                  v-model="competition.compEnd"
+                  v-model="compEnd"
                   label="Competition End Date"
                   outlined
                 ></v-text-field>
                 <v-textarea
-                  v-model="competition.compDescription"
+                  v-model="compDescription"
                   label="Competition Description"
                   outlined
                 ></v-textarea>
@@ -47,20 +47,18 @@ import { db } from "../plugins/firebase";
 export default {
   data() {
     return {
-      competition: {
-        compName: "",
-        compStart: "",
-        compEnd: "",
-        compDescription: "",
-      },
+      compName: "",
+      compStart: "",
+      compEnd: "",
+      compDescription: "",
     };
   },
   methods: {
     createComp() {
-      db.collection("competitions").doc(this.competition.compName).set({
-        start: this.competition.compStart,
-        end: this.competition.compEnd,
-        desc: this.competition.compDescription,
+      db.collection("competitions").doc(this.compName).set({
+        start: this.compStart,
+        end: this.compEnd,
+        desc: this.compDescription,
         entries: {},
       });
       this.$refs.comp.reset();

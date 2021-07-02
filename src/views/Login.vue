@@ -31,9 +31,13 @@
               </v-card-text>
               <v-divider></v-divider>
               <v-card-actions>
+                <ForgotPasswordDialog class="ml-3" />
                 <v-spacer></v-spacer>
                 <v-btn @click="login">Login</v-btn>
               </v-card-actions>
+              <v-card-text class="text-center">
+                <span class="error">{{ message }}</span>
+              </v-card-text>
             </v-card>
           </v-form>
         </v-col>
@@ -43,12 +47,26 @@
 </template>
 
 <script>
+import ForgotPasswordDialog from "@/components/ForgotPasswordDialog.vue";
 export default {
+  components: {
+    ForgotPasswordDialog,
+  },
   data() {
     return {
       email: "",
       pw: "",
     };
+  },
+  computed: {
+    message: {
+      get() {
+        return this.$store.state.errorMessage;
+      },
+      set(val) {
+        this.$store.commit("SET_ERRORS", val);
+      },
+    },
   },
   methods: {
     login() {

@@ -90,14 +90,21 @@ export default {
   },
   methods: {
     submit() {
-      db.collection("entries")
-        .doc(this.name)
-        .set({
-          name: this.name,
-          img: this.imgURL,
-          likes: 0,
-          comp: this.selected,
-          uploadDate: new Date().toLocaleDateString("en-US"),
+      // let entry = {
+      //   name: this.name,
+      //   img: this.imgURL,
+      //   comp: this.selected,
+      //   uploadDate: new Date().toLocaleDateString("en-US"),
+      // }
+      db.collection("competitions")
+        .doc(this.selected)
+        .update({
+          entries: {
+            name: this.name,
+            img: this.imgURL,
+            comp: this.selected,
+            uploadDate: new Date().toLocaleDateString("en-US"),
+          },
         });
       this.$refs.form.reset();
       this.submitted = true;
