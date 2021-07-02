@@ -59,7 +59,6 @@ export default {
         start: this.compStart,
         end: this.compEnd,
         desc: this.compDescription,
-        entries: {},
       });
       this.$refs.comp.reset();
       this.submitted = true;

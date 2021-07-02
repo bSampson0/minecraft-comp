@@ -2,20 +2,25 @@
   <div class="pt-12">
     <v-container>
       <v-row>
+        <h1>Past Submissions</h1>
+      </v-row>
+      <v-row>
         <v-col>
-          <h1 class="text-center">Windmill Competition Entries</h1>
+          <v-select
+            :items="comps"
+            label="Choose Competition"
+            v-model="selected"
+            @change="getData"
+            outlined
+          ></v-select>
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" sm="6" lg="4" v-for="(entry, i) in entries" :key="i">
-          <v-card max-height="500px">
-            <v-card-title> {{ entry.name }} </v-card-title>
-            <v-card-text>
-              <a :href="entry.img" target="_blank">
-                <v-img height="200px" :src="entry.img" contain></v-img>
-              </a>
-            </v-card-text>
-            <v-card-text> Upload Date: {{ entry.uploadDate }} </v-card-text>
+        <v-col cols="12" sm="4" v-for="(entry, i) in entries" :key="i">
+          <v-card>
+            <v-card-title>{{ entry.name }}</v-card-title>
+            <v-img :src="entry.img" contain height="200px"></v-img>
+            <v-card-text> Date Submitted: {{ entry.uploadDate }} </v-card-text>
           </v-card>
         </v-col>
       </v-row>
@@ -29,23 +34,33 @@ export default {
   data() {
     return {
       entries: [],
+      selected: null,
     };
   },
+  computed: {
+    comps() {
+      return this.$store.state.comps;
+    },
+  },
   created() {
-    this.getData();
+    this.getComps();
   },
   methods: {
     like(entry) {
       this.entries[entry].likes++;
     },
-    getData() {
-      db.collection("entries")
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            this.entries.push(doc.data());
-          });
-        });
+    async getData() {
+      let collection = db.collection(
+        "competitions/" + this.selected + "/entries"
+      );
+      let documents = await collection.get();
+      documents.forEach((doc) => {
+        this.entries.push(doc.data());
+        console.log(doc.data());
+      });
+    },
+    getComps() {
+      this.$store.dispatch("retrieveComps");
     },
   },
 };

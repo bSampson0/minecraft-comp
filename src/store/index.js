@@ -11,6 +11,7 @@ export default new Vuex.Store({
     entries: [],
     user: null,
     errorMessage: null,
+    comps: [],
   },
   mutations: {
     SET_USER(state, val) {
@@ -21,6 +22,9 @@ export default new Vuex.Store({
     },
     SET_ERRORS(state, val) {
       state.errorMessage = val;
+    },
+    SET_COMPS(state, val) {
+      state.comps = val;
     },
   },
   actions: {
@@ -69,6 +73,18 @@ export default new Vuex.Store({
           commit("SET_ERRORS", error);
           console.log(err.message);
         });
+    },
+    async retrieveComps({ commit }) {
+      let competitions = [];
+      db.collection("competitions")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            console.log(doc.id);
+            competitions.push(doc.id);
+          });
+        });
+      commit("SET_COMPS", competitions);
     },
   },
   modules: {},
