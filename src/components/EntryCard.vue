@@ -1,15 +1,14 @@
 <template>
-  <div>
-    <v-card>
+  <v-card>
+    <v-img height="200px" width="500px" contain :src="src">
       <v-card-title>{{ name }}</v-card-title>
-      <v-img height="200px" contain :src="src"></v-img>
       <v-card-text>
         Upload Date: {{ uploadDate }} <v-spacer></v-spacer>
 
         Rank: {{ rank }}
       </v-card-text>
-    </v-card>
-  </div>
+    </v-img>
+  </v-card>
 </template>
 
 <script>
@@ -18,7 +17,7 @@ export default {
   props: {
     name: String,
     src: String,
-    uploadDate: Date,
+    uploadDate: String,
     rank: Number,
   },
 };

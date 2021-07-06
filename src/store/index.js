@@ -47,9 +47,11 @@ export default new Vuex.Store({
       commit("SET_USER", null);
       router.push("/login");
     },
-    async fetchData({ commit }) {
+    async fetchData({ commit }, comp) {
       let data = [];
       await db
+        .collection("competitions")
+        .doc(comp)
         .collection("entries")
         .get()
         .then((querySnapshot) => {
@@ -85,6 +87,17 @@ export default new Vuex.Store({
           });
         });
       commit("SET_COMPS", competitions);
+    },
+    async submitEntry(name, imgURL, date) {
+      db.collection("competitions")
+        .doc(this.selected)
+        .collection("entries")
+        .doc(this.name)
+        .set({
+          name: name,
+          img: imgURL,
+          uploadDate: date,
+        });
     },
   },
   modules: {},

@@ -1,6 +1,16 @@
 <template>
   <div>
+    <Hero />
     <v-container>
+      <v-row class="mt-10">
+        <v-select
+          :items="comps"
+          label="Choose Competition"
+          v-model="selected"
+          @change="getData"
+          outlined
+        ></v-select>
+      </v-row>
       <v-row>
         <draggable
           :list="entries"
@@ -25,16 +35,21 @@
 </template>
 
 <script>
+import { db } from "@/plugins/firebase";
 import EntryCard from "@/components/EntryCard.vue";
+import Hero from "@/components/Hero.vue";
 import draggable from "vuedraggable";
 export default {
   components: {
     EntryCard,
     draggable,
+    Hero,
   },
   data() {
     return {
       data: null,
+      selected: null,
+      comps: [],
     };
   },
   computed: {
@@ -43,11 +58,21 @@ export default {
     },
   },
   created() {
-    this.getData();
+    this.getComps();
   },
   methods: {
     getData() {
-      this.$store.dispatch("fetchData");
+      this.$store.dispatch("fetchData", this.selected);
+    },
+    getComps() {
+      db.collection("competitions")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            console.log(doc.id);
+            this.comps.push(doc.id);
+          });
+        });
     },
   },
 };
