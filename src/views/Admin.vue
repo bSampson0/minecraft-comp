@@ -9,6 +9,8 @@
         <v-col cols="12" class="text-center">
           <v-btn class="mr-1" to="createComp">Create Competition</v-btn>
           <v-btn class="ml-1" to="rankings">Vote on Competition</v-btn>
+          <v-btn class="ml-1">Edit Admins</v-btn>
+          <v-btn class="ml-1">Add Admins</v-btn>
         </v-col>
       </v-row>
     </v-container>

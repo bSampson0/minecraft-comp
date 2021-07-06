@@ -50,6 +50,7 @@ export default {
       this.entries[entry].likes++;
     },
     async getData() {
+      this.entries.length = 0;
       let collection = db.collection(
         "competitions/" + this.selected + "/entries"
       );
