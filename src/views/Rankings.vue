@@ -14,7 +14,8 @@
           outlined
         ></v-select>
       </v-row>
-      <v-row v-if="entries.length != 0">
+      
+      <v-row v-if="entries.length != 0" justify="center">
         <v-col cols="12" md="6">
           <h1 class="text-center">Winner</h1>
           <EntryCard
@@ -35,14 +36,14 @@
           <h2 class="text-center">Set the rankings</h2>
           <p class="text-center">Drag winner to top.</p>
           <draggable :list="entries" @change="updateRanks">
-            <v-col cols="12" v-for="entry in entries" :key="entry.rank">
+            <span cols="12" v-for="entry in entries" :key="entry.rank">
               <EntryCard
                 :name="entry.name"
                 :src="entry.img"
                 :uploadDate="entry.uploadDate"
                 :rank="entry.rank"
               />
-            </v-col>
+            </span>
           </draggable>
         </v-col>
       </v-row>
