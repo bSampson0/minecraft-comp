@@ -17,7 +17,7 @@
       </v-row>
       <v-row>
         <v-col cols="12" sm="4" v-for="(entry, i) in entries" :key="i">
-          <v-card>
+          <v-card :href="entry.img" target="_blank">
             <v-card-title>{{ entry.name }}</v-card-title>
             <v-img :src="entry.img" contain height="200px"></v-img>
             <v-card-text> Date Submitted: {{ entry.uploadDate }} </v-card-text>
@@ -61,7 +61,7 @@ export default {
       });
     },
     getComps() {
-      this.$store.dispatch("retrieveComps");
+      this.$store.dispatch("getComps");
     },
   },
 };

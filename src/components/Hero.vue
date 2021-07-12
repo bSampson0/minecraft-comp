@@ -1,12 +1,17 @@
 <template>
   <div class="hero text-center justify-center py-6">
-    <h1>{{ this.$route.name }}</h1>
-    <span>View the leaderboard to see who is winning each competition.</span>
+    <h1>{{ name }}</h1>
+    <span>{{ description }}</span>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    name: String,
+    description: String,
+  },
+};
 </script>
 
 <style lang="scss" scoped>

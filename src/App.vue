@@ -15,7 +15,7 @@
         <div class="nav-items d-none d-md-block">
           <!-- <v-btn class="mr-1" text to="/">Submit</v-btn> -->
           <v-btn class="ml-1" text to="/addentry">Join Competition</v-btn>
-          <v-btn class="ml-1" text to="/leaderboard">Leaderboard</v-btn>
+          <v-btn class="ml-1" text to="/submissions">View Submissions</v-btn>
           <v-btn class="ml-1" text to="/admin" v-if="this.$store.state.user"
             >Admin</v-btn
           >

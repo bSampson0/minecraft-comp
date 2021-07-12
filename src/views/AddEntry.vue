@@ -22,7 +22,6 @@
                   :items="comps"
                   label="Choose Competition"
                   v-model="selected"
-                  @change="getComp"
                   outlined
                 ></v-select>
                 <v-text-field
@@ -71,19 +70,23 @@
 
 <script>
 import { storage } from "../plugins/firebase";
-import { db } from "../plugins/firebase";
+import { db } from "@/plugins/firebase";
 export default {
   data() {
     return {
       name: "",
       img: null,
       selected: null,
-      comps: [],
       imgURL: "",
       submitted: false,
       uploaded: true,
       loading: false,
     };
+  },
+  computed: {
+    comps() {
+      return this.$store.state.comps;
+    },
   },
   created() {
     this.getComps();
@@ -134,14 +137,7 @@ export default {
       );
     },
     getComps() {
-      db.collection("competitions")
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            console.log(doc.id);
-            this.comps.push(doc.id);
-          });
-        });
+      this.$store.dispatch("getComps", this.selected);
     },
   },
 };
