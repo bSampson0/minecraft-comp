@@ -101,6 +101,7 @@ export default {
           name: this.name,
           img: this.imgURL,
           uploadDate: new Date().toLocaleDateString("en-US"),
+          rank: 35,
         });
       this.$refs.form.reset();
       this.submitted = true;

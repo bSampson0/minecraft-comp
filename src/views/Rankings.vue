@@ -14,29 +14,31 @@
           outlined
         ></v-select>
       </v-row>
-      
+      <v-row class="mt-0 pt-0">
+        <v-btn
+          width="100%"
+          @click="saveRankings"
+          color="blue"
+          :disabled="!ifChange"
+          >Save</v-btn
+        >
+      </v-row>
+
       <v-row v-if="entries.length != 0" justify="center">
         <v-col cols="12" md="6">
-          <h1 class="text-center">Winner</h1>
+          <h1>Winner</h1>
           <EntryCard
             :name="entries[0].name"
             :src="entries[0].img"
             :uploadDate="entries[0].uploadDate"
             :rank="parseInt('1')"
           />
-          <v-btn
-            width="500px"
-            @click="saveRankings"
-            color="blue"
-            :disabled="!ifChange"
-            >Save</v-btn
-          >
         </v-col>
         <v-col cols="12" md="6">
-          <h2 class="text-center">Set the rankings</h2>
-          <p class="text-center">Drag winner to top.</p>
+          <h2>Set the rankings</h2>
+          <p>Drag winner to top.</p>
           <draggable :list="entries" @change="updateRanks">
-            <span cols="12" v-for="entry in entries" :key="entry.rank">
+            <span cols="12" v-for="(entry, i) in entries" :key="i">
               <EntryCard
                 :name="entry.name"
                 :src="entry.img"
@@ -101,7 +103,7 @@ export default {
           .doc(entry.name)
           .update({
             // eslint-disable-next-line prettier/prettier
-            "rank": `"${i + 1}"`,
+            "rank": `${i + 1}`,
           });
       });
       this.ifChange = false;

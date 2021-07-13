@@ -1,9 +1,11 @@
 <template>
-  <div class="pt-12">
-    <v-container>
-      <v-row>
-        <h1>Past Submissions</h1>
-      </v-row>
+  <div>
+    <Hero
+      name="Past Submissions"
+      description="Choose a competition to see
+        past submissions and rankings."
+    />
+    <v-container class="pt-10">
       <v-row>
         <v-col>
           <v-select
@@ -17,11 +19,13 @@
       </v-row>
       <v-row>
         <v-col cols="12" sm="4" v-for="(entry, i) in entries" :key="i">
-          <v-card :href="entry.img" target="_blank">
-            <v-card-title>{{ entry.name }}</v-card-title>
-            <v-img :src="entry.img" contain height="200px"></v-img>
-            <v-card-text> Date Submitted: {{ entry.uploadDate }} </v-card-text>
-          </v-card>
+          <EntryCard
+            :href="entry.img"
+            :name="entry.name"
+            :src="entry.img"
+            :uploadDate="entry.uploadDate"
+            :rank="parseInt(entry.rank)"
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -29,11 +33,15 @@
 </template>
 
 <script>
-import { db } from "../plugins/firebase";
+import EntryCard from "@/components/EntryCard.vue";
+import Hero from "@/components/Hero.vue";
 export default {
+  components: {
+    EntryCard,
+    Hero,
+  },
   data() {
     return {
-      entries: [],
       selected: null,
     };
   },
@@ -41,24 +49,17 @@ export default {
     comps() {
       return this.$store.state.comps;
     },
+    entries() {
+      return this.$store.state.entries;
+    },
   },
   created() {
     this.getComps();
+    this.$store.commit("CLEAR_ENTRIES");
   },
   methods: {
-    like(entry) {
-      this.entries[entry].likes++;
-    },
-    async getData() {
-      this.entries.length = 0;
-      let collection = db.collection(
-        "competitions/" + this.selected + "/entries"
-      );
-      let documents = await collection.get();
-      documents.forEach((doc) => {
-        this.entries.push(doc.data());
-        console.log(doc.data());
-      });
+    getData() {
+      this.$store.dispatch("getEntries", this.selected);
     },
     getComps() {
       this.$store.dispatch("getComps");

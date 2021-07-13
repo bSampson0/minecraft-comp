@@ -26,6 +26,9 @@ export default new Vuex.Store({
     SET_COMPS(state, val) {
       state.comps = val;
     },
+    CLEAR_ENTRIES(state) {
+      state.entries.length = 0;
+    },
   },
   actions: {
     // Login - Firebase Auth
@@ -60,6 +63,17 @@ export default new Vuex.Store({
           let error = err.message;
           commit("SET_ERRORS", error);
           console.log(err.message);
+        });
+    },
+    // Delete Admin
+    async deleteAdmin(uid) {
+      auth
+        .deleteUser(uid)
+        .then(() => {
+          console.log("Successfully deleted user.");
+        })
+        .catch((error) => {
+          console.log(`Error deleting message: ${error}`);
         });
     },
     // Get Competitions (for drop down selections throughout website)
@@ -97,19 +111,6 @@ export default new Vuex.Store({
         });
       commit("SET_ENTRIES", data);
     },
-    // Submit entry.
-    // async submitEntry(comp, name, imgURL, date) {
-    //   // Add entry to entries sub collection. (COMPETITIONS => COMP_NAME => ENTRIES)
-    //   db.collection("competitions")
-    //     .doc(comp)
-    //     .collection("entries")
-    //     .doc(name)
-    //     .set({
-    //       name: name,
-    //       img: imgURL,
-    //       uploadDate: date,
-    //     });
-    // },
   },
   modules: {},
 });

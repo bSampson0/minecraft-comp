@@ -1,5 +1,5 @@
 <template>
-  <v-card width="500px" class="mt-2 mb-2">
+  <v-card width="500px" class="mt-2 mb-2" :href="href" target="_blank">
     <v-img contain :src="src" gradient="115deg, rgba(0,0,0,.6), rgba(0,0,0,0)">
       <v-card-title>{{ name }}</v-card-title>
       <v-card-text>
@@ -19,6 +19,7 @@ export default {
     src: String,
     uploadDate: String,
     rank: Number,
+    href: String,
   },
 };
 </script>

@@ -42,7 +42,7 @@
 
         <v-divider></v-divider>
         <v-list nav dense>
-          <v-list-item-group v-model="group">
+          <v-list-item-group>
             <v-list-item to="/addentry">
               <!-- <v-list-item-icon>
                 <v-icon>mdi-account</v-icon>
@@ -78,6 +78,26 @@
         </v-list>
       </v-navigation-drawer>
       <router-view />
+      <v-footer padless class="mt-12" absolute>
+        <v-card flat tile width="100%" color="#195f1f">
+          <v-card-text>
+            <v-row>
+              <v-col> By: BNice | 2021 </v-col>
+              <v-spacer> </v-spacer>
+              <v-col>
+                <v-img
+                  src="github.svg"
+                  height="20px"
+                  width="20px"
+                  href="https://github.com/bSampson0"
+                  target="_blank"
+                  class="ml-auto"
+                ></v-img>
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </v-footer>
     </v-main>
   </v-app>
 </template>
