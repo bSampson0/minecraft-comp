@@ -4,7 +4,7 @@
       name="Rankings"
       description="Choose the rankings for each competition."
     />
-    <v-container>
+    <v-container class="mb-12">
       <v-row class="mt-10">
         <v-select
           :items="comps"
@@ -37,15 +37,15 @@
         <v-col cols="12" md="6">
           <h2>Set the rankings</h2>
           <p>Drag winner to top.</p>
-          <draggable :list="entries" @change="updateRanks">
-            <span cols="12" v-for="(entry, i) in entries" :key="i">
+          <draggable @change="updateRanks" :list="entries">
+            <div cols="12" v-for="(entry, i) in entries" :key="i">
               <EntryCard
                 :name="entry.name"
                 :src="entry.img"
                 :uploadDate="entry.uploadDate"
                 :rank="entry.rank"
               />
-            </span>
+            </div>
           </draggable>
         </v-col>
       </v-row>
@@ -92,7 +92,6 @@ export default {
     updateRanks() {
       console.log("updating ranks.");
       this.ifChange = true;
-      console.log(this.ifChange);
     },
     saveRankings() {
       this.entries.forEach((entry, i) => {

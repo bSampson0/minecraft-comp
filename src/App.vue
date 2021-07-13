@@ -92,6 +92,7 @@
                   href="https://github.com/bSampson0"
                   target="_blank"
                   class="ml-auto"
+                  link
                 ></v-img>
               </v-col>
             </v-row>
