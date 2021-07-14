@@ -4,7 +4,7 @@
       name="Rankings"
       description="Choose the rankings for each competition."
     />
-    <v-container class="mb-12">
+    <v-container>
       <v-row class="mt-10">
         <v-select
           :items="comps"
@@ -17,7 +17,7 @@
       <v-row class="mt-0 pt-0">
         <v-btn
           width="100%"
-          @click="saveRankings"
+          @click.native="saveRankings"
           color="blue"
           :disabled="!ifChange"
           >Save</v-btn

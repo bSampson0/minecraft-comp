@@ -45,6 +45,7 @@ export default {
     url("../assets/backgrounds/mainBG.jpg");
   background-size: cover;
   background-position: top;
-  height: calc(100vh - 2em);
+  height: calc(100vh);
+  padding-bottom: 100px;
 }
 </style>

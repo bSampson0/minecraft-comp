@@ -50,11 +50,11 @@
               <v-list-item-title>Join Competition</v-list-item-title>
             </v-list-item>
 
-            <v-list-item to="/leaderboard">
+            <v-list-item to="/submissions">
               <!-- <v-list-item-icon>
                 <v-icon>mdi-account</v-icon>
               </v-list-item-icon> -->
-              <v-list-item-title>Leaderboard</v-list-item-title>
+              <v-list-item-title>Submissions</v-list-item-title>
             </v-list-item>
             <v-list-item to="/admin" v-if="this.$store.state.user">
               <!-- <v-list-item-icon>
@@ -77,7 +77,9 @@
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
-      <router-view />
+      <div class="main-view">
+        <router-view />
+      </div>
       <v-footer padless class="mt-12" absolute>
         <v-card flat tile width="100%" color="#195f1f">
           <v-card-text>
@@ -85,15 +87,14 @@
               <v-col> By: BNice | 2021 </v-col>
               <v-spacer> </v-spacer>
               <v-col>
-                <v-img
-                  src="github.svg"
-                  height="20px"
-                  width="20px"
-                  href="https://github.com/bSampson0"
-                  target="_blank"
-                  class="ml-auto"
-                  link
-                ></v-img>
+                <a href="https://github.com/bSampson0" target="_blank">
+                  <v-img
+                    src="github-logo-white.svg"
+                    height="20px"
+                    width="20px"
+                    class="ml-auto"
+                  ></v-img>
+                </a>
               </v-col>
             </v-row>
           </v-card-text>
@@ -122,5 +123,8 @@ export default {
 #main {
   font-family: "VT323", monospace;
   font-size: 1.5em;
+}
+.main-view {
+  padding-bottom: 100px;
 }
 </style>
