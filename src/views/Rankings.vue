@@ -22,6 +22,9 @@
           :disabled="!ifChange"
           >Save</v-btn
         >
+        <div class="text-center" v-if="saved">
+          <span>Rankings have been saved.</span>
+        </div>
       </v-row>
 
       <v-row v-if="entries.length != 0" justify="center">
@@ -69,6 +72,7 @@ export default {
       data: null,
       selected: null,
       ifChange: false,
+      saved: true,
     };
   },
   computed: {
@@ -91,6 +95,7 @@ export default {
     },
     updateRanks() {
       console.log("updating ranks.");
+      this.saved = false;
       this.ifChange = true;
     },
     saveRankings() {
@@ -105,6 +110,7 @@ export default {
             "rank": `${i + 1}`,
           });
       });
+      this.saved = true;
       this.ifChange = false;
     },
   },
