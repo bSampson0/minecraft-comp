@@ -17,22 +17,7 @@
 </template>
 
 <script>
-import { gsap } from "gsap";
-export default {
-  mounted() {
-    const tl = gsap.timeline({
-      defaults: { duration: 0.7, opacity: 0, ease: "elastic" },
-    });
-    // tl.from(".mainSVG", { delay: 1, scale: 0.2, transformOrigin: "center" });
-    tl.from(".my-title", { delay: 0.5, scale: 0.2, transformOrigin: "center" });
-    tl.from(".my-btn", {
-      delay: 0.3,
-      scale: 0.2,
-      transformOrigin: "center",
-      stagger: 0.4,
-    });
-  },
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>

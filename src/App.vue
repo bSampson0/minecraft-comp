@@ -87,7 +87,10 @@
               <v-col> By: BNice | 2021 </v-col>
               <v-spacer> </v-spacer>
               <v-col>
-                <a href="https://github.com/bSampson0" target="_blank">
+                <a
+                  href="https://github.com/bSampson0/minecraft-comp"
+                  target="_blank"
+                >
                   <v-img
                     src="github-logo-white.svg"
                     height="20px"
