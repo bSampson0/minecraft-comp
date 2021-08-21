@@ -1,5 +1,5 @@
 {
   "projects": {
-    "default": "minecraft-6f839"
+    "default": process.env.VUE_APP_PROJECT_ID
   }
 }
