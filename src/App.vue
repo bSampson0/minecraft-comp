@@ -84,7 +84,7 @@
         <v-card flat tile width="100%" color="#195f1f">
           <v-card-text>
             <v-row>
-              <v-col> By: BNice | 2021 </v-col>
+              <v-col>Created By: Bnice | 2021 </v-col>
               <v-spacer> </v-spacer>
               <v-col>
                 <a
