@@ -1,14 +1,11 @@
 <template>
   <div id="home">
-    <div class="top-section text-center justify-center py-6">
-      <h1>JOIN COMPETITION</h1>
-      <span
-        >Enter a competition by selecting the one you want to join, then
-        uploading your image.</span
-      >
-    </div>
-    <v-container class="fill-height pt-12">
-      <v-row align="center" justify="center">
+    <Hero
+      name="Join Competition"
+      description="Enter a competition by selecting the one you want to join, then uploading your image."
+    />
+    <v-container class="fill-height pt-12 mb-12">
+      <v-row align="center" justify="center" class="mb-12">
         <v-col cols="12" sm="6">
           <v-card>
             <v-card-title> Submission Form </v-card-title>
@@ -71,7 +68,9 @@
 <script>
 import { storage } from "../plugins/firebase";
 import { db } from "@/plugins/firebase";
+import Hero from "../components/Hero.vue";
 export default {
+  components: { Hero },
   data() {
     return {
       name: "",

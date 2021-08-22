@@ -96,6 +96,7 @@
                     height="20px"
                     width="20px"
                     class="ml-auto"
+                    alt="github logo"
                   ></v-img>
                 </a>
               </v-col>
@@ -126,8 +127,5 @@ export default {
 #main {
   font-family: "VT323", monospace;
   font-size: 1.5em;
-}
-.main-view {
-  padding-bottom: 100px;
 }
 </style>

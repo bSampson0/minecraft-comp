@@ -17,7 +17,7 @@
           ></v-select>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row class="mb-12">
         <v-col cols="12" sm="4" v-for="(entry, i) in entries" :key="i">
           <EntryCard
             :href="entry.img"
