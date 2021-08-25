@@ -3,7 +3,9 @@ const admin = require("firebase-admin");
 const cors = require("cors")({ origin: true });
 const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey("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")
+const API_KEY = functions.config().sendgrid.key;
+
+sgMail.setApiKey(API_KEY);
 
 exports.sendMail = functions.firestore
   .document("entries/{entry}")
